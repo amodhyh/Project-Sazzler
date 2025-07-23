@@ -50,7 +50,7 @@ flowchart LR
 
 | Service         | Repo URL                                                                                             | Port | Purpose                              |
 | --------------- | ---------------------------------------------------------------------------------------------------- | ---- | ------------------------------------ |
-| System Registry | [Service reg repo](https://github.com/amodhyh/sazzler-service-registry.git) | 8761 | Service discovery & health dashboard |
+| Service Registry | [Service reg repo](https://github.com/amodhyh/sazzler-service-registry.git) | 8761 | Service discovery & health dashboard |
 | Product Service | [Product Service repo](https://github.com/your-username/product-service) | 8081 | Product catalog & inventory API      |
 | Order Service   | [Order Service repo](https://github.com/amodhyh/Sazzler-Order-Service.git)     | 8082 | Order placement & tracking API       |
 
