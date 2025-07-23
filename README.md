@@ -6,7 +6,7 @@ This repository serves as the single entry point to discover, clone, and run the
 
 ---
 
-## 📚 Table of Contents
+##  Table of Contents
 
 1. [Overview](#overview)
 2. [Architecture Diagram](#architecture-diagram)
@@ -19,7 +19,7 @@ This repository serves as the single entry point to discover, clone, and run the
 
 ---
 
-## 📝 Overview
+##  Overview
 
 Sazzler is a modular microservices suite built with Spring Boot. Each service runs independently, communicates via a central Eureka registry, and can be developed, tested, and deployed in isolation.
 
@@ -31,7 +31,7 @@ Sazzler is a modular microservices suite built with Spring Boot. Each service ru
 
 ---
 
-## 🏗️ Architecture Diagram
+##  Architecture Diagram
 
 ```mermaid
 flowchart LR
@@ -46,17 +46,17 @@ flowchart LR
 
 ---
 
-## 🔗 Services
+##  Services
 
 | Service         | Repo URL                                                                                             | Port | Purpose                              |
 | --------------- | ---------------------------------------------------------------------------------------------------- | ---- | ------------------------------------ |
-| System Registry | [https://github.com/amodhyh/sazzler-service-registry.git](https://github.com/amodhyh/sazzler-service-registry.git) | 8761 | Service discovery & health dashboard |
-| Product Service | [https://github.com/amodhyh/sazzler-product-service.git](https://github.com/your-username/product-service) | 8081 | Product catalog & inventory API      |
-| Order Service   | [https://github.com/amodhyh/Sazzler-Order-Service.git](https://github.com/amodhyh/Sazzler-Order-Service.git)     | 8082 | Order placement & tracking API       |
+| System Registry | [Service reg repo](https://github.com/amodhyh/sazzler-service-registry.git) | 8761 | Service discovery & health dashboard |
+| Product Service | [Product Service repo](https://github.com/your-username/product-service) | 8081 | Product catalog & inventory API      |
+| Order Service   | [https://github.com/amodhyh/sazzler-service-registry.git](https://github.com/amodhyh/Sazzler-Order-Service.git)     | 8082 | Order placement & tracking API       |
 
 ---
 
-## 🚀 Quickstart Guide
+##  Quickstart Guide
 
 Follow these steps on your local machine to get all services running:
 
@@ -100,7 +100,7 @@ Follow these steps on your local machine to get all services running:
 
 ---
 
-## 🐳 One‑Command Docker Setup
+##  One‑Command Docker Setup
 
 If you prefer Docker, run all services with a single command. Save this as `docker-compose.yml` in the hub root:
 
@@ -139,7 +139,7 @@ docker-compose up --build
 
 ---
 
-## ⚙️ Configuration
+## ⚙ Configuration
 
 * **Ports**: Change `server.port` in each service’s `application.properties` if default ports conflict.
 * **Profiles**: Use Spring profiles (`dev`, `prod`) to manage environment‑specific settings.
@@ -147,7 +147,7 @@ docker-compose up --build
 
 ---
 
-## 🤝 Contributing
+##  Contributing
 
 1. Fork any of the service repos.
 2. Create a feature branch: `git checkout -b feature/your-feature`.
@@ -156,6 +156,6 @@ docker-compose up --build
 
 ---
 
-## 📄 License
+##  License
 
 This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
