@@ -80,7 +80,7 @@ flowchart LR
   Gateway --> APIDef["API Definitions"]
 
   Auth --> DBAuth[("Auth DB - PostgreSQL/H2")]
-  Product --> DBProduct[("Product DB - PostgreSQL/H2")]
+  Product --> DBProduct[("Product DB - Mongodb")]
   Order --> DBOrder[("Order DB - PostgreSQL/H2")]
 
   subgraph "Event-Driven Layer (In Progress)"
