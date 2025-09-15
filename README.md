@@ -26,13 +26,13 @@ Launched in July 2025, the project is actively evolving. Core functionalities—
 
 ## Overview
 
-Sazzler represents a comprehensive e-commerce backend built on Spring Boot, designed to handle high-traffic scenarios with ease. Each microservice operates autonomously, registering with a Eureka-based service registry for dynamic discovery and load balancing. Communication occurs through RESTful endpoints routed via a centralized API Gateway, promoting loose coupling and resilience.
+Sazzler represents a comprehensive e-commerce backend built on Spring Boot, designed to handle high-traffic scenarios with ease. Each microservice operates operates autonomously, registering with a Eureka-based service registry for dynamic discovery and load balancing. Communication occurs through RESTful endpoints routed via a centralized API Gateway, promoting loose coupling and resilience.
 
 Key highlights include:
 - **Modular Design**: Services can be updated or scaled independently without impacting the overall system.
 - **E-Commerce Focus**: Supports essential operations like browsing products, placing orders, and secure user authentication.
 - **Extensibility**: Built with future expansions in mind, such as integrating payment gateways or user profiles.
-- **Development Status**: As of September 2025, foundational services are operational, with ongoing work on asynchronous features and cloud deployment.
+- **Development Status**: As of September 15, 2025, foundational services are operational, with ongoing work on asynchronous features and cloud deployment.
 
 This architecture not only enhances maintainability but also aligns with industry standards for building distributed systems, making Sazzler ideal for learning microservices or prototyping real-world applications.
 
@@ -71,25 +71,25 @@ This stack prioritizes performance, security, and developer productivity, drawin
 
 ```mermaid
 flowchart LR
-  Client[Client App] --> Gateway[API Gateway (Spring Cloud Gateway)]
-  Gateway --> Registry[Eureka Service Registry]
-  Gateway --> Auth[Auth Service]
-  Gateway --> Product[Product Service]
-  Gateway --> Order[Order Service]
-  Gateway --> Utility[Utility Service]
-  Gateway --> APIDef[API Definitions]
+  Client["Client App"] --> Gateway["API Gateway (Spring Cloud Gateway)"]
+  Gateway --> Registry["Eureka Service Registry"]
+  Gateway --> Auth["Auth Service"]
+  Gateway --> Product["Product Service"]
+  Gateway --> Order["Order Service"]
+  Gateway --> Utility["Utility Service"]
+  Gateway --> APIDef["API Definitions"]
 
-  Auth --> DBAuth[(Auth DB - PostgreSQL/H2)]
-  Product --> DBProduct[(Product DB - PostgreSQL/H2)]
-  Order --> DBOrder[(Order DB - PostgreSQL/H2)]
+  Auth --> DBAuth[("Auth DB - PostgreSQL/H2")]
+  Product --> DBProduct[("Product DB - PostgreSQL/H2")]
+  Order --> DBOrder[("Order DB - PostgreSQL/H2")]
 
   subgraph "Event-Driven Layer (In Progress)"
-    Kafka[Kafka Broker] --- Order
+    Kafka["Kafka Broker"] --- Order
     Kafka --- Product
   end
 
   subgraph "Monitoring Layer (In Progress)"
-    Prometheus[Prometheus] --- Registry
+    Prometheus["Prometheus"] --- Registry
     Prometheus --- Gateway
   end
 
@@ -270,7 +270,7 @@ docker-compose up --build -d
 
 Customize Sazzler to fit your environment:
 - **Ports & Networking**: Override `server.port` in properties to resolve conflicts; use `eureka.instance.hostname` for non-localhost setups.
-- **Spring Profiles**: Activate via `--spring.profiles.active=prod` for production configs (e.g., external DBs, logging levels).
+- **Spring Profiles**: Activate via `--spring.profiles.active=prod` for environment configs (e.g., external DBs, logging levels).
 - **Database Setup**: Default H2 for simplicity; switch to persistent storage:
   ```properties
   spring.jpa.hibernate.ddl-auto=update
