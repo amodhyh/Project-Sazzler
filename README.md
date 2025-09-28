@@ -68,35 +68,67 @@ This stack prioritizes performance, security, and developer productivity, drawin
 ---
 
 ## Architecture Diagram
-
 ```mermaid
-flowchart LR
-  Client["Client App"] --> Gateway["API Gateway (Spring Cloud Gateway)"]
-  Gateway --> Registry["Eureka Service Registry"]
-  Gateway --> Auth["Auth Service"]
-  Gateway --> Product["Product Service"]
-  Gateway --> Order["Order Service"]
-  Gateway --> Utility["Utility Service"]
-  Gateway --> APIDef["API Definitions"]
+%%{init: { "flowchart": { "curve": "linear" } }}%%
+flowchart TD
+  Client["Client App"]
+  Gateway["API Gateway (Spring Cloud Gateway)"]
+  Registry["Eureka Service Registry"]
+  Auth["Auth Service"]
+  Product["Product Service"]
+  Order["Order Service"]
+  Utility["Utility Service (e.g., Logging)"]
+  APIDef["API Definitions (OpenAPI)"]
+  DBAuth[("Auth DB - PostgreSQL (Prod) / H2 (Dev)")]
+  DBOrder[("Order DB - PostgreSQL (Prod) / H2 (Dev)")]
+  DBProduct[("Product DB - MongoDB")]
 
-  Auth --> DBAuth[("Auth DB - PostgreSQL/H2")]
-  Product --> DBProduct[("Product DB - Mongodb")]
-  Order --> DBOrder[("Order DB - PostgreSQL/H2")]
+  Client --> Gateway
+  Gateway -->|Registers/Queries| Registry
+  Gateway -->|Authenticates| Auth
+  Gateway --> Product
+  Gateway --> Order
+  Gateway --> Utility
+  Gateway --> APIDef
+
+  Auth --> DBAuth
+  Order --> DBOrder
+  Product --> DBProduct
 
   subgraph "Event-Driven Layer (In Progress)"
-    Kafka["Kafka Broker"] --- Order
-    Kafka --- Product
+    Kafka["Kafka Broker"]
+    Kafka -->|Consumes| Order
+    Order -->|Publishes| Kafka
+    Kafka -->|Consumes| Product
+    Product -->|Publishes| Kafka
   end
 
   subgraph "Monitoring Layer (In Progress)"
-    Prometheus["Prometheus"] --- Registry
-    Prometheus --- Gateway
+    Prometheus["Prometheus"]
+    Prometheus --> Registry
+    Prometheus --> Gateway
+    Prometheus --> Auth
+    Prometheus --> Product
+    Prometheus --> Order
+    Prometheus --> Kafka
   end
 
-  style Kafka fill:#FFD700,stroke:#DAA520
-  style Prometheus fill:#FFD700,stroke:#DAA520
-```
+  style Kafka fill:#4CAF50,stroke:#388E3C,stroke-dasharray: 5 5
+  style Prometheus fill:#4CAF50,stroke:#388E3C,stroke-dasharray: 5 5
+  
 
+  %% Align nodes to encourage straight lines
+  Client --- Gateway
+  Gateway --- Registry
+  Gateway --- Auth
+  Gateway --- Product
+  Gateway --- Order
+  Gateway --- Utility
+  Gateway --- APIDef
+  Auth --- DBAuth
+  Order --- DBOrder
+  Product --- DBProduct
+```
 *Description*: Clients interact solely through the API Gateway, which authenticates requests via JWT and routes them to registered services. Databases are isolated per service for data sovereignty. In-progress layers add asynchronous and monitoring capabilities for enhanced scalability.
 
 ---
