@@ -155,7 +155,7 @@ Security is embedded at every layer to protect sensitive e-commerce data:
 - **Authentication & Authorization**: JWT tokens issued by the Auth Service, validated at the API Gateway. Supports roles like USER, ADMIN for fine-grained access.
 - **Data Integrity**: DTOs ensure sanitized, type-safe data exchange, mitigating injection attacks.
 - **Gateway Protections**: Rate limiting, CORS configuration, and HTTPS enforcement (planned).
-- **Best Practices**: Password hashing with BCrypt, secure headers, and vulnerability scanning via OWASP dependencies.
+- **Best Practices**: Password hashing and salting with Argon2, secure headers, and vulnerability scanning via OWASP dependencies.
 - **In Progress**: OAuth2 integration for social logins and token refresh mechanisms.
 - **Auditing**: Logging of all auth attempts and API calls for compliance and debugging.
 
